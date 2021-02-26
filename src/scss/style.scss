@@ -18,6 +18,23 @@
     align-items: center;
     justify-content: space-between;
     color: #fff;
+    padding: 16px 25px;
+    transition: all .3s;
+    &.active {
+        background-color: var(--main-blue);
+        color: var(--dark-blue);
+        top: 0;
+        left: 0;
+        right: 0;
+        border-bottom: 3px solid var(--dark-blue);
+        .header__logo-item__svg-path {
+            fill: var(--dark-blue);
+        }
+        .header__logo-item:first-child{
+            padding: 5px;
+            box-shadow: -4px -2px 8px rgba(255, 255, 255, 0.8), 4px 2px 8px rgba(136, 165, 191, 0.48);
+        }
+    }
 
     &__logo {
         display: flex;
@@ -25,12 +42,22 @@
     }
 
     &__logo-item {
-        width: 60px;
-        height: 48px;
+        svg {
+            width: 60px;
+            height: 48px;
+
+        }
+
+        &__svg-path {
+            fill: #fff;
+        }
     }
 
     &__logo-item:nth-child(2) {
-        width: 140px;
+        svg {
+            width: 140px;
+        }
+
         margin-left: 20px;
     }
 
@@ -586,19 +613,6 @@
     &__aside-item {
         color: var(--dark-blue);
 
-        &.plan__aside-item-num {
-            .plan__aside-item__list-item--active button {
-                font-weight: 700;
-                opacity: 1;
-            }
-        }
-
-        &.plan__aside-item-check {
-            .plan__aside-item__list-item {
-                flex: 0 0 50%;
-            }
-        }
-
         &__title {
             font-weight: 500;
             font-size: 14px;
@@ -610,6 +624,18 @@
             display: flex;
             flex-wrap: wrap;
 
+            &.plan__aside-item__list-num {
+                .buttons__item--active button {
+                    font-weight: 700;
+                    opacity: 1;
+                }
+            }
+
+            &.plan__aside-item__list-check {
+                .plan__aside-item__list-item {
+                    flex: 0 0 50%;
+                }
+            }
         }
 
         &__list-item {
@@ -636,12 +662,64 @@
 
     &__content {}
 
+    .swiper-container {}
+
     &__content-item {
-        min-width: 970px;
         background: linear-gradient(0deg, #EBF3FA, #EBF3FA), linear-gradient(210.55deg, #EBF2F9 19.14%, #D9E6F3 154.68%);
         box-shadow: -16px -16px 32px rgba(255, 255, 255, 0.6), 16px 24px 32px rgba(18, 61, 101, 0.2);
         border-radius: 24px;
         padding: 48px 36px;
+        position: relative;
+        transition: all .3s;
+
+        &__toggle {
+            color: var(--dark-blue);
+            position: absolute;
+            top: 46px;
+            right: 36px;
+            display: flex;
+            align-items: center;
+
+
+        }
+
+        &__toggle-checkbox {
+            z-index: -1;
+            opacity: 0;
+        }
+
+        &__toggle-text {
+            font-weight: 500;
+        }
+
+        &__toggle-label {
+            display: block;
+            background: #DEE8F2;
+            box-shadow: inset 2px 2px 5px rgba(105, 141, 173, 0.4);
+            border-radius: 8px;
+            width: 40px;
+            height: 20px;
+            margin: 0 8px;
+            position: relative;
+        }
+
+        &__toggle-button {
+            content: "";
+            position: absolute;
+            top: 50%;
+            transform: translate(2px, -50%);
+            background: #E3EDF7;
+            box-shadow: 5px 2px 16px rgba(136, 165, 191, 0.78), inset 0px -1px 1px rgba(85, 102, 123, 0.4);
+            border-radius: 8px;
+            width: 16px;
+            height: 16px;
+            transition: transform .3s;
+
+        }
+
+        &__toggle-checkbox:checked+&__toggle-button {
+            transform: translate(23px, -50%);
+        }
 
         &__wrapper {
             display: flex;
@@ -665,6 +743,8 @@
                 position: relative;
                 margin-bottom: 8px;
                 max-height: 16px;
+
+
 
                 &::before {
                     content: "";
@@ -746,6 +826,7 @@
     padding: 100px 0;
     color: var(--dark-blue);
     padding-left: 5%;
+
     &__title {
         font-weight: 500;
         font-size: 48px;
@@ -753,12 +834,18 @@
         margin-bottom: 32px;
         padding-left: 5%;
     }
-    &__descr{
+
+    &__descr {
         max-width: 520px;
         opacity: 0.6;
         line-height: 160%;
         margin-bottom: 40px;
         padding-left: 5%;
+    }
+    .swiper-pagination{
+        span{
+            margin: 0 5px;
+        }
     }
 }
 
