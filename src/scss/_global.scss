@@ -1,0 +1,87 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+
+body {
+  background-color: var(--main-blue);
+  font-family: "Gilroy", sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button:focus,
+input:focus {
+  outline: transparent;
+}
+
+.container {
+  max-width: 1430px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+button {
+  cursor: pointer;
+  color: inherit;
+  border: none;
+}
+
+.main-button {
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--main-blue);
+  background: linear-gradient(0deg, #F43838, #F43838), #C4C4C4;
+  box-shadow: 0px 4px 16px rgba(255, 29, 29, 0.6);
+  border-radius: 16px;
+}
+
+.section-text {
+  position: relative;
+
+  &::before {
+    content: "location";
+    writing-mode: vertical-rl;
+    transform: rotate(180deg) translateY(50%);
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    color: linear-gradient(0deg, #EBF3FA, #EBF3FA), linear-gradient(210.55deg, #EBF2F9 19.14%, #D9E6F3 154.68%);
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: 96px;
+    line-height: 100%;
+    text-shadow: -4px -2px 16px #FFFFFF, 4px 2px 16px rgba(136, 165, 191, 0.48);
+  }
+}
