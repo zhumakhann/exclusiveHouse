@@ -1,6 +1,7 @@
 @import 'vars';
 @import 'fonts';
 @import 'global';
+@import 'popup';
 
 //-----------------------------------------------------------------------------------------------------------
 //
@@ -120,7 +121,7 @@
     position: relative;
     display: flex;
     align-items: center;
-
+    color: #fff;
     &::after {
         content: "";
         position: absolute;
@@ -134,19 +135,24 @@
     }
 
     &__bg {
+    }
+    &__bg-item{
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         z-index: -2;
-
-        img {
-            width: 100%;
-            height: 100%;
+        opacity: 0;
+        visibility: hidden;
+        width: 100%;
+        height: 100%;
+        transition: all 1s;
+        &.active{
+            visibility: visible;
+            opacity: 1;
         }
     }
-
     &__wrapper {
         display: flex;
         justify-content: space-between;
@@ -453,12 +459,30 @@
     &__about {
         position: relative;
         padding: 140px 90px 0;
-        background-image: url('../images/smart-bg.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
-        color: var(--main-blue)
+        color: var(--main-blue);
+        overflow: hidden;
+        // background-image: url('../images/smart-bg-1.jpg');
     }
-
+    &__about-bg{
+        &__item{
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .3s;
+            z-index: -1;
+            &.active{
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
     &__about-title {
         font-weight: 500;
         font-size: 36px;
@@ -561,7 +585,7 @@
 }
 
 .family {
-    padding: 150px 0;
+    padding: 150px 0 0;
 
     &::before {
         content: "family";
@@ -600,6 +624,7 @@
 }
 
 .plan {
+    padding: 150px 0 0;
     &__title {
         font-weight: 500;
         font-size: 48px;
@@ -749,7 +774,23 @@
             list-style: none;
             margin-right: 100px;
         }
-
+        &__img{
+            height: 500px;
+            position: relative;
+            img{
+                position: absolute;
+                top: 0;
+                left: 0;
+                max-height: 100%;
+                &.active{
+                    opacity: 1;
+                    visibility: visible;
+                }
+                opacity: 0;
+                visibility: hidden;
+                transition: all .3s;
+            }
+        }
         .options {
             padding: 30px 0;
             border-top: 1px solid #ccc;
@@ -843,7 +884,7 @@
 }
 
 .gallery {
-    padding: 100px 0;
+    padding: 100px 0 0;
     color: var(--dark-blue);
     padding-left: 5%;
 
@@ -897,7 +938,7 @@
 }
 
 .dev {
-    padding: 100px 0;
+    padding: 200px 0 0;
 
     &__wrapper {
         display: flex;
@@ -1095,21 +1136,40 @@
         display: flex;
         align-items: center;
     }
+    &__form-item{
+        position: relative;
+        margin-right: 24px;
+        &__line{
+            display: block;
+            position: absolute;
+            height: 2px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #BC8B35;
+            transition: all .3s;
+        }
+
+    }
 
     &__form-input {
         background: transparent;
         border: none;
-        border-bottom: 2px solid #BC8B35;
         padding: 10px 5px;
         font-size: 18px;
-        margin-right: 24px;
         color: #fff;
-
         &::placeholder {
             color: rgba(#fff, .6);
         }
     }
-
+    &__form-input:focus + &__form-item{
+        &__line{
+            background-color: #fff;
+            right: 0;
+            left: 0;
+            
+        }
+    }
     &__form-submit {
         color: var(--dark-blue);
         background-color: #fff;
@@ -1141,8 +1201,8 @@
     }
 
     &__buttons-item {
+        margin-right: 24px;
         &.buttons__item--active button {
-            margin-right: 24px;
             box-shadow: inset -3px -3px 7px #FFFFFF, inset 3px 3px 7px rgba(136, 165, 191, 0.48);
         }
 

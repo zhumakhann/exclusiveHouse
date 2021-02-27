@@ -4,6 +4,7 @@ const houses = [{
         block: 'B',
         square: 214.14,
         image: 'plan-1.png',
+        image3D: 'plan-13D.png',
         roomNum: 7,
         options: [{
                 type: 'Terrain',
@@ -23,6 +24,7 @@ const houses = [{
         block: 'C',
         square: 230.14,
         image: 'plan-1.png',
+        image3D: 'plan-13D.png',
         roomNum: 2,
         options: [{
                 type: 'Terrain',
@@ -42,6 +44,7 @@ const houses = [{
         block: 'A',
         square: 168.14,
         image: 'plan-1.png',
+        image3D: 'plan-13D.png',
         roomNum: 5,
         options: [{
                 type: 'Land',
@@ -61,6 +64,7 @@ const houses = [{
         block: 'A',
         square: 168.14,
         image: 'plan-1.png',
+        image3D: 'plan-13D.png',
         roomNum: 4,
         options: [{
                 type: 'Terrain',
@@ -85,6 +89,7 @@ const houses = [{
         block: 'E',
         square: 168.14,
         image: 'plan-1.png',
+        image3D: 'plan-13D.png',
         roomNum: 1,
         options: [{
                 type: 'Terrain',
@@ -106,9 +111,16 @@ const houses = [{
 ]
 
 let filterItems = []
+let activeFilters = []
 const filterNum = document.querySelector('.plan__aside-item__list-num'),
     filterSqr = document.querySelector('.plan__aside-item__list-sqr'),
-    filters = document.querySelectorAll('.plan__aside');
+    filters = document.querySelectorAll('.plan__aside'),
+    popupOpen = document.querySelectorAll('.popup-open'),
+    popup = document.querySelector('.popup'),
+    popupClose = popup.querySelector('.popup__close'),
+    changeBgButton = document.querySelectorAll('.change-bg-button'),
+    tabBtn = document.querySelectorAll('.tab-btn'),
+    planSlider = document.querySelector('.plan__slider');
 
 const generateOptions = (options) => {
     return options.map(option => {
@@ -135,6 +147,23 @@ const filterTemplate = (filter, type) => {
         </li>
         `
     }
+}
+const changeBgButtonClickHandler = (e) => {
+    console.log(e.target);
+    const parent = e.target.closest('section');
+    const imgList = parent.querySelectorAll('.change-bg-list img');
+    const buttons = parent.querySelectorAll('.change-bg-button');
+    const selectedBtn = e.target.closest('.change-bg-button');
+    let currentIndex;
+    buttons.forEach((btn, i) => {
+        btn.parentNode.classList.remove('buttons__item--active')
+        btn === selectedBtn ? currentIndex = i : ''
+    })
+    imgList.forEach(img => {
+        img.classList.remove('active')
+    })
+    imgList[currentIndex].classList.add('active');
+    buttons[currentIndex].parentNode.classList.add('buttons__item--active');
 }
 const generateFilters = (parent, filter, type) => {
     let filters = houses.map(item => {
@@ -193,7 +222,8 @@ const layoutTemplate = item => {
                 </li>
             </ul>
             <div class="plan__content-item__img">
-                <img src="images/${item.image}" alt="img">
+                <img class="active" src="images/${item.image}" alt="img">
+                <img src="images/${item.image3D}" alt="img">
             </div>
         </div>
         <ul class="plan__content-item__bottom">
@@ -201,7 +231,7 @@ const layoutTemplate = item => {
                 <p class="plan__content-item__bottom-item__text">
                     Понравилась квартира?
                 </p>
-                <button class="main-button plan__content-item__bottom-item__button red">
+                <button class="main-button plan__content-item__bottom-item__button red popup-open">
                     Заказать звонок
                 </button>
             </li>
@@ -213,14 +243,30 @@ const layoutTemplate = item => {
         </ul>
         <div class="plan__content-item__toggle">
             <span class="plan__content-item__toggle-text">2D</span>
-            <label class="plan__content-item__toggle-label" for="layerSelect">
-              <input class="plan__content-item__toggle-checkbox" type="checkbox" id="layerSelect">
+            <label class="plan__content-item__toggle-label" for="item-${item.id}">
+              <input class="plan__content-item__toggle-checkbox" type="checkbox" id="item-${item.id}">
               <div class="plan__content-item__toggle-button"></div>
             </label>
             <span class="plan__content-item__toggle-text">3D</span>
         </div>
     </div>
     `
+}
+const layoutClickHandler = e => {
+    console.log(e.target);
+    if(e.target.closest('.plan__content-item__toggle')){
+        const parent = e.target.closest('.plan__content-item');
+        const check = parent.querySelector('.plan__content-item__toggle-checkbox').checked;
+        const images = parent.querySelectorAll('.plan__content-item__img img');
+        images.forEach(img => img.classList.remove('active'))
+        if(check){
+            console.log('check');
+            images[1].classList.add('active')
+        }else{
+            images[0].classList.add('active')
+            
+        }
+    }
 }
 const generateLayout = (arr = []) => {
     let fragment = '';
@@ -231,13 +277,28 @@ const generateLayout = (arr = []) => {
     const slider = document.querySelector('.swiper-container');
     console.log(slider);
     parent.innerHTML = fragment
-    const layouts = new Swiper('.plan__slider', {
+    const layouts = new Swiper(planSlider, {
         // Optional parameters
         slidesPerView: 1,
         spaceBetween: 20,
     });
+            
 }
-
+const tabClickHandler = (e) => {
+    const parent = e.target.closest('section');
+    const tabs = parent.querySelectorAll('.tab-items__item');
+    const tabBtns = parent.querySelectorAll('.tab-btn');
+    let currentIndex;
+    tabBtns.forEach((btn, i) => {
+        btn.parentNode.classList.remove('buttons__item--active')
+        btn === e.target ? currentIndex = i : ''
+    })
+    tabs.forEach(tab => {
+        tab.classList.remove('contacts__map-item--active')
+    })
+    tabs[currentIndex].classList.add('contacts__map-item--active');
+    tabBtns[currentIndex].parentNode.classList.add('buttons__item--active');
+}
 const filterClickHandler = (e) => {
     if (e.target.closest('.plan__aside-item__list') && !e.target.closest('.plan__aside-item__list').classList.contains('plan__aside-item__list-check')) {
         if (e.target.closest('.plan__aside-item__list-item__button')) {
@@ -250,7 +311,6 @@ const filterClickHandler = (e) => {
             const parent = e.target.closest('.plan__aside');
             const activeButtons = parent.querySelectorAll('.buttons__item--active span');
             console.log(activeButtons);
-            let activeFilters = []
             activeButtons.forEach(item => {
                 activeFilters.push(+item.textContent);
             })
@@ -303,6 +363,22 @@ document.addEventListener('DOMContentLoaded', () => {
     generateFilters(filterSqr, 'square', 'sqr')
     generateLayout(houses)
     generateCheckbox(houses)
+    changeBgButton.forEach(button => {
+        console.log(button);
+        button.addEventListener('click', (e) => changeBgButtonClickHandler(e))
+    })
+    tabBtn.forEach(btn => {
+        btn.addEventListener('click', (e) => tabClickHandler(e))
+    })
+    popupOpen.forEach(button => {
+        button.addEventListener('click', () => {
+            popup.classList.add('popup--active');
+        })
+    })
+    planSlider.addEventListener('click', (e) => layoutClickHandler(e))
+    popupClose.addEventListener('click', () => {
+            popup.classList.remove('popup--active');
+        })
     const gallerySlider = new Swiper('.gallery-slider', {
         // Optional parameters
         loop: false,

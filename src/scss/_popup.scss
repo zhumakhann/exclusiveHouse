@@ -1,0 +1,32 @@
+.popup{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 11;
+    display: flex;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+    will-change: transform, opacity;
+    &.popup--active{
+        opacity: 1;
+        visibility: visible;
+    }
+    &__close{
+        position: absolute;
+        background: transparent;
+        top: 50px;
+        right: 50px;
+    }
+    .call__wrapper{
+        max-width: 100%;
+    }
+    &__bg{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    }
+}

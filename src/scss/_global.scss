@@ -11,6 +11,7 @@ html {
 html,
 body {
   height: 100%;
+  scroll-behavior: smooth;
   position: relative;
 }
 
@@ -93,6 +94,9 @@ button {
       }
       &.buttons__item--active .buttons__item__item {
         box-shadow: inset -3px -3px 7px #FFFFFF, inset 3px 3px 7px rgba(136, 165, 191, 0.48);
+        path{
+          fill: var(--main-gold);
+        }
       }
     }
 
