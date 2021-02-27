@@ -305,16 +305,17 @@ document.addEventListener('DOMContentLoaded', () => {
     generateCheckbox(houses)
     const gallery = new Swiper('.swiper-container', {
         // Optional parameters
-        loop: true,
-        slidesPerView: 'auto',
+        loop: false,
+        slidesPerView: 1.5,
+        spaceBetween: 80,
         // If we need pagination
         pagination: {
             el: '.swiper-pagination',
             type: 'bullets',
             clickable: true,
             renderBullet: function (index, className) {
-                return '<span className="' + className + '" role="button" aria-label="Go to slide ' +  (index + 1) + '">' + (index + 1) + '</span>';
-            }
+                return '<span class="' + className + '">' + (index + 1) + '</span>';
+              },
         },
     });
     window.addEventListener('scroll', handleScroll)

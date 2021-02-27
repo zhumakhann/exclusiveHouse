@@ -12,6 +12,7 @@
   "devDependencies": {
     "@babel/core": "^7.10.1",
     "@babel/preset-env": "^7.10.1",
+    "@splidejs/splide": "^2.4.21",
     "browser-sync": "^2.26.7",
     "del": "^5.1.0",
     "fontforge": "^0.0.4",

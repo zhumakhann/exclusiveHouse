@@ -20,6 +20,7 @@
     color: #fff;
     padding: 16px 25px;
     transition: all .3s;
+
     &.active {
         background-color: var(--main-blue);
         color: var(--dark-blue);
@@ -27,10 +28,12 @@
         left: 0;
         right: 0;
         border-bottom: 3px solid var(--dark-blue);
+
         .header__logo-item__svg-path {
             fill: var(--dark-blue);
         }
-        .header__logo-item:first-child{
+
+        .header__logo-item:first-child {
             padding: 5px;
             box-shadow: -4px -2px 8px rgba(255, 255, 255, 0.8), 4px 2px 8px rgba(136, 165, 191, 0.48);
         }
@@ -173,8 +176,8 @@
             left: 0;
             top: 50%;
             transform: translateY(-50%);
-            width: 70px;
-            height: 80px;
+            width: 40px;
+            height: 40px;
             background-image: url('../images/location.svg');
             background-repeat: no-repeat;
             background-size: cover;
@@ -608,7 +611,9 @@
         display: flex;
     }
 
-    &__aside {}
+    &__aside {
+        flex: 0 0 30%;
+    }
 
     &__aside-item {
         color: var(--dark-blue);
@@ -660,11 +665,26 @@
         }
     }
 
-    &__content {}
+    &__content {
+        max-width: 100%;
+    }
 
-    .swiper-container {}
+    &__slider {
+        flex: 0 0 70%;
+    }
+
+    .swiper-container {
+        width: 100%;
+        max-width: 100%;
+        max-height: 100vh;
+        // CSS Grid/Flexbox bug size workaround
+        // @see https://github.com/kenwheeler/slick/issues/982
+        min-height: 0;
+        min-width: 0;
+    }
 
     &__content-item {
+        max-width: 900px;
         background: linear-gradient(0deg, #EBF3FA, #EBF3FA), linear-gradient(210.55deg, #EBF2F9 19.14%, #D9E6F3 154.68%);
         box-shadow: -16px -16px 32px rgba(255, 255, 255, 0.6), 16px 24px 32px rgba(18, 61, 101, 0.2);
         border-radius: 24px;
@@ -842,9 +862,131 @@
         margin-bottom: 40px;
         padding-left: 5%;
     }
-    .swiper-pagination{
-        span{
-            margin: 0 5px;
+    .swiper-container{
+        padding-bottom: 80px;
+    }
+    .swiper-slide {
+        // box-shadow: 16px 24px 32px rgba(18, 61, 101, 0.24);
+        
+        img {
+            border-radius: 16px;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: drop-shadow(16px 24px 32px rgba(18, 61, 101, 0.24));
+        }
+    }
+
+    .swiper-pagination {
+        left: 80px;
+        bottom: 0px;
+        right: auto;
+        width: auto;
+        span {
+            margin: 0 25px !important;
+            width: auto;
+            height: auto;
+            background: transparent;
+            font-size: 18px;
+            font-weight: 700;
+        }
+    }
+}
+
+.dev {
+    padding: 100px 0;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        color: var(--dark-blue);
+    }
+
+    &__content {
+        flex: 0 0 50%;
+    }
+
+    &__content-title {
+        font-weight: 500;
+        font-size: 48px;
+        letter-spacing: 0.02em;
+        margin-bottom: 30px;
+    }
+
+    &__content-text {
+        opacity: 0.6;
+        line-height: 160%;
+        margin-bottom: 30px;
+    }
+
+    &__content-list {
+        list-style: none;
+
+        &__item {
+            margin-bottom: 30px;
+            font-size: 24px;
+            line-height: 160%;
+            padding-left: 40px;
+            position: relative;
+
+            &::before {
+                content: "";
+                width: 8px;
+                height: 8px;
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: var(--main-red);
+            }
+        }
+    }
+
+    &__content-build {
+        &__num {
+            font-weight: 700;
+            color: var(--main-red);
+            font-size: 48px;
+            margin-bottom: 8px;
+
+            span {
+                font-size: 36px;
+            }
+        }
+
+        &__time {
+            letter-spacing: 0.02em;
+        }
+    }
+
+    &__about {
+        flex: 0 0 40%;
+        border-left: 1px solid #C6D0DD;
+        padding-left: 95px;
+    }
+
+    &__about-logo {
+        margin-bottom: 40px;
+    }
+
+    &__about-text {
+        position: relative;
+        line-height: 160%;
+        padding: 47px 0;
+
+    }
+
+    &__about-text+&__about-text {
+        position: relative;
+
+        &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 56px;
+            height: 3px;
+            background-color: var(--main-red);
         }
     }
 }
