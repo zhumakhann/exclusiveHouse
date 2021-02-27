@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
     generateFilters(filterSqr, 'square', 'sqr')
     generateLayout(houses)
     generateCheckbox(houses)
-    const gallery = new Swiper('.swiper-container', {
+    const gallerySlider = new Swiper('.gallery-slider', {
         // Optional parameters
         loop: false,
         slidesPerView: 1.5,
@@ -317,6 +317,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return '<span class="' + className + '">' + (index + 1) + '</span>';
               },
         },
+    });
+    const otherSlider = new Swiper('.other-slider', {
+        // Optional parameters
+        loop: false,
+        slidesPerView: 3.5,
+        spaceBetween: 80,
     });
     window.addEventListener('scroll', handleScroll)
     filters.forEach(filter => {

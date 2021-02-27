@@ -18,7 +18,7 @@ body {
   background-color: var(--main-blue);
   font-family: "Gilroy", sans-serif;
   font-size: 16px;
-  color: #fff;
+  color: var(--daek-blue);
 }
 
 ul,
@@ -108,12 +108,13 @@ button {
     position: absolute;
     top: 50%;
     left: 50px;
-    color: linear-gradient(0deg, #EBF3FA, #EBF3FA), linear-gradient(210.55deg, #EBF2F9 19.14%, #D9E6F3 154.68%);
+    color: linear-gradient(0deg, #EBF3FA, #EBF3FA), linear-gradient(210.55deg, #EBF2F9 19.14%, #D9E6F3 154.68%) !important;
+    color: rgba(#ccc, .5);
     text-transform: uppercase;
     font-weight: 900;
     font-size: 96px;
     line-height: 100%;
-    text-shadow: -4px -2px 16px #FFFFFF, 4px 2px 16px rgba(136, 165, 191, 0.48);
+    text-shadow: -4px -2px 16px #FFFFFF, 4px 2px 16px rgba(136, 165, 191, 0.48) !important;
   }
 }
 
