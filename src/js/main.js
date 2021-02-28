@@ -367,9 +367,9 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(button);
         button.addEventListener('click', (e) => changeBgButtonClickHandler(e))
     })
-    // tabBtn.forEach(btn => {
-    //     btn.addEventListener('click', (e) => tabClickHandler(e))
-    // })
+    tabBtn.forEach(btn => {
+        btn.addEventListener('click', (e) => tabClickHandler(e))
+    })
     popupOpen.forEach(button => {
         button.addEventListener('click', () => {
             popup.classList.add('popup--active');
@@ -384,30 +384,30 @@ document.addEventListener('DOMContentLoaded', () => {
         headerBurger.classList.toggle('active');
     })
     planSlider.addEventListener('click', (e) => layoutClickHandler(e))
-    // popupClose.addEventListener('click', () => {
-    //         popup.classList.remove('popup--active');
-    //     })
-    // const gallerySlider = new Swiper('.gallery-slider', {
-    //     // Optional parameters
-    //     loop: false,
-    //     slidesPerView: 1.5,
-    //     spaceBetween: 80,
-    //     // If we need pagination
-    //     pagination: {
-    //         el: '.swiper-pagination',
-    //         type: 'bullets',
-    //         clickable: true,
-    //         renderBullet: function (index, className) {
-    //             return '<span class="' + className + '">' + (index + 1) + '</span>';
-    //           },
-    //     },
-    // });
-    // const otherSlider = new Swiper('.other-slider', {
-    //     // Optional parameters
-    //     loop: false,
-    //     slidesPerView: 3.5,
-    //     spaceBetween: 80,
-    // });
+    popupClose.addEventListener('click', () => {
+            popup.classList.remove('popup--active');
+        })
+    const gallerySlider = new Swiper('.gallery-slider', {
+        // Optional parameters
+        loop: false,
+        slidesPerView: 1.5,
+        spaceBetween: 80,
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+            type: 'bullets',
+            clickable: true,
+            renderBullet: function (index, className) {
+                return '<span class="' + className + '">' + (index + 1) + '</span>';
+              },
+        },
+    });
+    const otherSlider = new Swiper('.other-slider', {
+        // Optional parameters
+        loop: false,
+        slidesPerView: 3.5,
+        spaceBetween: 80,
+    });
     window.addEventListener('scroll', handleScroll)
     filters.forEach(filter => {
         filter.addEventListener('click', (e) => filterClickHandler(e))
