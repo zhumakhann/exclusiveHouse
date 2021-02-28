@@ -120,7 +120,9 @@ const filterNum = document.querySelector('.plan__aside-item__list-num'),
     popupClose = popup.querySelector('.popup__close'),
     changeBgButton = document.querySelectorAll('.change-bg-button'),
     tabBtn = document.querySelectorAll('.tab-btn'),
-    planSlider = document.querySelector('.plan__slider');
+    planSlider = document.querySelector('.plan__slider'),
+    header = document.querySelector('.header'),
+    headerBurger = header.querySelector('.header__burger');
 
 const generateOptions = (options) => {
     return options.map(option => {
@@ -260,11 +262,9 @@ const layoutClickHandler = e => {
         const images = parent.querySelectorAll('.plan__content-item__img img');
         images.forEach(img => img.classList.remove('active'))
         if(check){
-            console.log('check');
             images[1].classList.add('active')
         }else{
             images[0].classList.add('active')
-            
         }
     }
 }
@@ -350,7 +350,7 @@ const filterHouses = (arr, type) => {
     console.log(filteredHouses);
 }
 const handleScroll = () => {
-    const header = document.querySelector('.header');
+    
     if (window.scrollY > 0) {
         header.classList.add('active');
     } else {
@@ -367,39 +367,47 @@ document.addEventListener('DOMContentLoaded', () => {
         console.log(button);
         button.addEventListener('click', (e) => changeBgButtonClickHandler(e))
     })
-    tabBtn.forEach(btn => {
-        btn.addEventListener('click', (e) => tabClickHandler(e))
-    })
+    // tabBtn.forEach(btn => {
+    //     btn.addEventListener('click', (e) => tabClickHandler(e))
+    // })
     popupOpen.forEach(button => {
         button.addEventListener('click', () => {
             popup.classList.add('popup--active');
         })
     })
+    headerBurger.addEventListener('click', () => {
+        const nav = header.querySelector('.header__nav')
+        const contactsBtn = header.querySelector('.header__contacts-button')
+        header.classList.toggle('active-navbar');
+        nav.classList.toggle('active');
+        contactsBtn.classList.toggle('active');
+        headerBurger.classList.toggle('active');
+    })
     planSlider.addEventListener('click', (e) => layoutClickHandler(e))
-    popupClose.addEventListener('click', () => {
-            popup.classList.remove('popup--active');
-        })
-    const gallerySlider = new Swiper('.gallery-slider', {
-        // Optional parameters
-        loop: false,
-        slidesPerView: 1.5,
-        spaceBetween: 80,
-        // If we need pagination
-        pagination: {
-            el: '.swiper-pagination',
-            type: 'bullets',
-            clickable: true,
-            renderBullet: function (index, className) {
-                return '<span class="' + className + '">' + (index + 1) + '</span>';
-              },
-        },
-    });
-    const otherSlider = new Swiper('.other-slider', {
-        // Optional parameters
-        loop: false,
-        slidesPerView: 3.5,
-        spaceBetween: 80,
-    });
+    // popupClose.addEventListener('click', () => {
+    //         popup.classList.remove('popup--active');
+    //     })
+    // const gallerySlider = new Swiper('.gallery-slider', {
+    //     // Optional parameters
+    //     loop: false,
+    //     slidesPerView: 1.5,
+    //     spaceBetween: 80,
+    //     // If we need pagination
+    //     pagination: {
+    //         el: '.swiper-pagination',
+    //         type: 'bullets',
+    //         clickable: true,
+    //         renderBullet: function (index, className) {
+    //             return '<span class="' + className + '">' + (index + 1) + '</span>';
+    //           },
+    //     },
+    // });
+    // const otherSlider = new Swiper('.other-slider', {
+    //     // Optional parameters
+    //     loop: false,
+    //     slidesPerView: 3.5,
+    //     spaceBetween: 80,
+    // });
     window.addEventListener('scroll', handleScroll)
     filters.forEach(filter => {
         filter.addEventListener('click', (e) => filterClickHandler(e))
